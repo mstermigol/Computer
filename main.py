@@ -1,20 +1,27 @@
 from MEMORY import ram
 from MEMORY import rom
 from CPU import register
+from CPU import mux
+from CPU import pc
+from TOOLS.jumpCondition import jumpCondition
 
-# Create BinaryRAM and BinaryROM instances with 16-bit addresses
+
+print(jumpCondition("010", 1, 1))
+
 ram = ram.RAM(16)
-rom = rom.ROM(16, [0b0000000000000010, 0b0000000000000010, 0b0000000000000011])
-registerA = register.REGISTER()
-registerA.load(0b0000000000000010, 1)
+rom = rom.ROM(16, ["0000000000000010", "0000000000000010", "0000000000000011"])
+registerA = register.REGISTER(16)
+registerA.load("0000000000000010", 1)
 
 
-# Read and write 16-bit binary data to BinaryRAM using 16-bit binary addresses
-ram.operate(1, 0b0000000000000001, 0b0000000000000011)
-data = ram.operate(0, 0b0000000000000001)
+ram.load("000000000000000", "0000000000000011", 1)
+data = ram.read("0000000000000000")
 print(f"Data in BinaryRAM: {data}")
 
-# Read 16-bit binary instructions from BinaryROM using 16-bit binary addresses
-instruction = rom.read(0b0000000000000000)
+instruction = rom.read("0000000000000010")
 print(f"This is the register: {registerA.read()}")
 print(f"Instruction from BinaryROM: {instruction}")
+
+mux1 = mux.MUX(16)
+mux1.select("0000000010000000", "0000000000000011", 0)
+print(f"This is what the mux chose: {mux1.data}")
