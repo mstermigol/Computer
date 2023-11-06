@@ -22,7 +22,7 @@ class PC:
         self.value = "0" * self.num_bits
 
     def step(self, jumpCondition, jumpTo = None,reset = 0):
-        if reset == "1":
+        if reset == 1:
             self.reset()
         elif jumpCondition == True:
             self.setValue(jumpTo)

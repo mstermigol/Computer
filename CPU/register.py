@@ -11,8 +11,6 @@ class REGISTER:
                 self.data = new_data
             else:
                 raise ValueError(f"Input data must be a {self.num_bits}-bit binary number")
-        else:
-            return self.data
 
     def read(self):
         return self.data

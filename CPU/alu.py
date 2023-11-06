@@ -22,9 +22,9 @@ class ALU:
             y = ''.join(['1' if bit == '0' else '0' for bit in y])
 
         if f:
-            self.result = bin(int(x, 2) + int(y, 2))[2:]
+            self.result = '{0:016b}'.format(int(x, 2) + int(y, 2))
         else:
-            self.result = ''.join(['1' if (bit_x == '1' and bit_y == '0') else '0' for bit_x, bit_y in zip(x, y)])
+            self.result = ''.join(['1' if (bit_x == '1' and bit_y == '1') else '0' for bit_x, bit_y in zip(x, y)])
 
         if no:
             self.result = ''.join(['1' if bit == '0' else '0' for bit in self.result])

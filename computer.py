@@ -7,9 +7,8 @@ from CPU import alu
 from TOOLS.jumpCondition import jumpCondition
 
 initial_values = {
-    "0000000000000000": "1111111111111111",
-    "0000000000000001": "0000000000000000",
-    "0000000000000010": "0101010101010101"
+    "0000000000000000": "0000000000000001",
+    "0000000000000001": "0000000000000010"
 }
 
 #Initialize components
@@ -19,7 +18,7 @@ pc1 = pc.PC(16)
 
 ram1 = ram.RAM(16, initial_values)
 
-rom1 = rom.ROM(16, ["0000000000000101", "1110011111010111"])
+rom1 = rom.ROM(16, ["0000000000000000", "1111110000010000", "0000000000000001", "1111000010010000", "0000000000010001", "1110000010010000", "0000000000000010", "1110001100001000"])
 
 registerA = register.REGISTER(16)
 registerD = register.REGISTER(16)
@@ -59,7 +58,6 @@ while i < 2**16:
         jumpConditionCheck = jumpCondition(jump, alu1.read()[1], alu1.read()[2])
         pc1.step(jumpConditionCheck, registerA.read())
 
-    print(i)
     
     i += 1
 
