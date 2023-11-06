@@ -1,7 +1,7 @@
 class RAM:
     def __init__(self, address_bits, initial_values=None):
         self.address_bits = address_bits
-        self.size = 2 ** address_bits - 1
+        self.size = 2 ** address_bits
         self.data = ["0" * 16] * self.size
 
         if initial_values is not None:

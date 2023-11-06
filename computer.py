@@ -13,13 +13,13 @@ initial_values = {
 }
 
 #Initialize components
-alu = alu.ALU()
+alu1 = alu.ALU()
 
-pc = pc.PC(16)
+pc1 = pc.PC(16)
 
-ram = ram.RAM(16, initial_values)
+ram1 = ram.RAM(16, initial_values)
 
-rom = rom.ROM(16, ["0000000000000101", "1110011111010111"])
+rom1 = rom.ROM(16, ["0000000000000101", "1110011111010111"])
 
 registerA = register.REGISTER(16)
 registerD = register.REGISTER(16)
@@ -29,9 +29,9 @@ mux2 = mux.MUX(16)
 
 #start
 i = 0
-while i < 2:
-    currentInstructionAdress = pc.read()
-    instruction = rom.read(currentInstructionAdress)
+while i < 2**16:
+    currentInstructionAdress = pc1.read()
+    instruction = rom1.read(currentInstructionAdress)
 
     opCode = int(instruction[0])
     a = int(instruction[3])
@@ -43,27 +43,35 @@ while i < 2:
 
     #Check if it is an A-instruction or a C-instruction
     if(opCode == 0):
-        mux1.select(instruction, alu.read()[0], opCode)
+        mux1.select(instruction, alu1.read()[0], opCode)
         registerA.load(mux1.read(), 1)
-        pc.step(False)
+        pc1.step(False)
     else:
-        mux2.select(registerA.read(), ram.read(registerA.read()), a)
-        alu.operate(registerD.read(), mux2.read(), comp)
+        mux2.select(registerA.read(), ram1.read(registerA.read()), a)
+        alu1.operate(registerD.read(), mux2.read(), comp)
 
-        print(alu.read()[0])
-        registerA.load(alu.read()[0], dest1)
-        registerD.load(alu.read()[0], dest2)
-        ram.load(registerA.read(), alu.read()[0], dest3)
+        registerA.load(alu1.read()[0], dest1)
+        registerD.load(alu1.read()[0], dest2)
+        ram1.load(registerA.read(), alu1.read()[0], dest3)
 
-        jumpCondition = jumpCondition(jump, alu.read()[1], alu.read()[2])
-        pc.step(jumpCondition, registerA.read())
+        
+
+        jumpConditionCheck = jumpCondition(jump, alu1.read()[1], alu1.read()[2])
+        pc1.step(jumpConditionCheck, registerA.read())
+
+    print(i)
     
-    print(ram.data[i])
-    print(rom.memory[i])
-    print(registerA.read())
-    print(registerD.read())
-
     i += 1
+
+print("------------RAM------------")
+for i in range(10):
+    print(ram1.data[i])
+print("------------ROM------------")
+for i in range(10):
+    print(rom1.memory[i])
+print(f"El registro A: {registerA.read()}")
+print(f"El registro D: {registerD.read()}")
+
 
 
 

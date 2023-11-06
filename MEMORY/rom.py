@@ -1,7 +1,7 @@
 class ROM:
     def __init__(self, address_bits, program):
         self.address_bits = address_bits
-        self.size = 2 ** address_bits - 1
+        self.size = 2 ** address_bits
         if len(program) > self.size:
             raise ValueError("Program size exceeds ROM capacity")
         self.memory = program + ["0" * 16] * (self.size - len(program))
