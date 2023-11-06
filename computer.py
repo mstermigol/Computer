@@ -27,8 +27,8 @@ initial_values = {
 
 ram = ram.RAM(16, initial_values)
 
-print(ram.read("0000000000000000"))  # Output: "1111111111111111"
-print(ram.read("0000000000000001"))  # Output: "0000000000000000"
+print(ram.read("0000000000000000"))
+print(ram.read("0000000000000001")) 
 print(ram.read("0000000000000010")) 
 
 rom = rom.ROM(16, ["0000000000000010", "0000000000000010", "0000000000000011"])
