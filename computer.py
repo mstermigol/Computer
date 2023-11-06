@@ -64,7 +64,7 @@ while i < 2**16:
         mux1.select(instruction, alu1.read()[0], opCode)
         registerA.load(mux1.read(), 1)
         pc1.step(False)
-    else:
+    elif(opCode == 1):
         mux2.select(registerA.read(), ram1.read(registerA.read()), a)
         alu1.operate(registerD.read(), mux2.read(), comp)
 
@@ -76,15 +76,16 @@ while i < 2**16:
 
         jumpConditionCheck = jumpCondition(jump, alu1.read()[1], alu1.read()[2])
         pc1.step(jumpConditionCheck, registerA.read())
-
+    else:
+        break
     
     i += 1
 
 print("------------RAM------------")
-for i in range(10):
+for i in range(30):
     print(f"Position {i} = {ram1.data[i]}")
 print("------------ROM------------")
-for i in range(10):
+for i in range(30):
     print(f"Position {i} = {rom1.memory[i]}")
 print(f"El registro A: {registerA.read()}")
 print(f"El registro D: {registerD.read()}")

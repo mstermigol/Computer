@@ -1,16 +1,16 @@
 class REGISTER:
-    def __init__(self, num_bits):
-        if num_bits <= 0:
+    def __init__(self, numBits):
+        if numBits <= 0:
             raise ValueError("Number of bits must be greater than 0")
-        self.num_bits = num_bits
-        self.data = "0" * num_bits
+        self.numBits = numBits
+        self.data = "0" * numBits
 
     def load(self, new_data, c):
         if c == 1:
-            if len(new_data) == self.num_bits:
+            if len(new_data) == self.numBits:
                 self.data = new_data
             else:
-                raise ValueError(f"Input data must be a {self.num_bits}-bit binary number")
+                raise ValueError(f"Input data must be a {self.numBits}-bit binary number")
 
     def read(self):
         return self.data

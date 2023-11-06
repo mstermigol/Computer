@@ -1,5 +1,5 @@
 def jumpCondition(jump_bits, zr, ng):
-    jump_conditions = {
+    jumpConditions = {
         "000": "null",
         "001": "JGT",
         "010": "JEQ",
@@ -10,8 +10,8 @@ def jumpCondition(jump_bits, zr, ng):
         "111": "JMP"
     }
     
-    if jump_bits in jump_conditions:
-        code = jump_conditions[jump_bits]
+    if jump_bits in jumpConditions:
+        code = jumpConditions[jump_bits]
         if (
             (code == "JGT" and ng == 0 and zr == 0) or
             (code == "JEQ" and zr == 1) or

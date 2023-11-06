@@ -1,12 +1,12 @@
 class MUX:
-    def __init__(self, num_bits):
-        if num_bits <= 0:
+    def __init__(self, numBits):
+        if numBits <= 0:
             raise ValueError("Number of bits must be greater than 0")
-        self.num_bits = num_bits
-        self.data = "0" * num_bits
+        self.numBits = numBits
+        self.data = "0" * numBits
 
     def select(self, a, b, sel):
-        if len(a) == self.num_bits and len(b) == self.num_bits:
+        if len(a) == self.numBits and len(b) == self.numBits:
             if sel == 0:
                 self.data = a
             elif sel == 1:
@@ -14,7 +14,7 @@ class MUX:
             else:
                 raise ValueError("sel must be 0 or 1")
         else:
-            raise ValueError(f"Input data must be a {self.num_bits}-bit binary number")
+            raise ValueError(f"Input data must be a {self.numBits}-bit binary number")
 
     def read(self):
         return self.data
