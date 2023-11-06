@@ -1,23 +1,27 @@
 class RAM:
-    def __init__(self, address_bits):
+    def __init__(self, address_bits, initial_values=None):
         self.address_bits = address_bits
         self.size = 2 ** address_bits - 1
-        self.memory = ["0" * 16] * self.size
+        self.data = ["0" * 16] * self.size
 
-    def load(self, address, memory, load):
+        if initial_values is not None:
+            for address, data in initial_values.items():
+                self.load(address, data, load=True)
+
+    def load(self, address, data, load):
         if load:
             int_address = int(address, 2)
             if 0 <= int_address < self.size:
-                if len(memory) == 16:
-                    self.memory[int_address] = memory
+                if len(data) == 16:
+                    self.data[int_address] = data
                 else:
-                    raise ValueError("Invalid memory value")
+                    raise ValueError("Invalid data value")
             else:
-                raise IndexError("Memory address out of range")
+                raise IndexError("data address out of range")
 
     def read(self, address):
         int_address = int(address, 2)
         if 0 <= int_address < self.size:
-            return self.memory[int_address]
+            return self.data[int_address]
         else:
-            raise IndexError("Memory address out of range")
+            raise IndexError("data address out of range")
