@@ -13,12 +13,12 @@ def jumpCondition(jump_bits, zr, ng):
     if jump_bits in jump_conditions:
         code = jump_conditions[jump_bits]
         if (
-            (code == "JGT" and ng == 1) or
+            (code == "JGT" and ng == 0 and zr == 0) or
             (code == "JEQ" and zr == 1) or
-            (code == "JGE" and (zr == 1 or ng == 1)) or
-            (code == "JLT" and ng == 0) or
+            (code == "JGE" and (zr == 1 or ng == 0)) or
+            (code == "JLT" and ng == 1 and zr == 0) or
             (code == "JNE" and zr == 0) or
-            (code == "JLE" and (zr == 0 or ng == 1)) or
+            (code == "JLE" and (zr == 1 or ng == 1)) or
             code == "JMP"):
             return True
     
