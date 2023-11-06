@@ -82,10 +82,10 @@ while i < 2**16:
 
 print("------------RAM------------")
 for i in range(10):
-    print("Position {i} = {ram1.data[i]}")
+    print(f"Position {i} = {ram1.data[i]}")
 print("------------ROM------------")
 for i in range(10):
-    print("Position {i} = {rom1.memory[i]}")
+    print(f"Position {i} = {rom1.memory[i]}")
 print(f"El registro A: {registerA.read()}")
 print(f"El registro D: {registerD.read()}")
 
