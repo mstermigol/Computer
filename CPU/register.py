@@ -6,7 +6,7 @@ class REGISTER:
         self.data = "0" * num_bits
 
     def load(self, new_data, c):
-        if c:
+        if c == 1:
             if len(new_data) == self.num_bits:
                 self.data = new_data
             else:

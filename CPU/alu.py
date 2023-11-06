@@ -1,7 +1,7 @@
 class ALU:
     def __init__(self):
         self.zero = False
-        self.result = ""
+        self.result = "0" * 16
         self.zr = 0
         self.ng = 0
 
@@ -22,12 +22,17 @@ class ALU:
             y = ''.join(['1' if bit == '0' else '0' for bit in y])
 
         if f:
-            self.result = bin(int(x, 2) + int(y, 2))[2:].zfill(16)
+            self.result = bin(int(x, 2) + int(y, 2))[2:]
         else:
             self.result = ''.join(['1' if (bit_x == '1' and bit_y == '0') else '0' for bit_x, bit_y in zip(x, y)])
 
         if no:
             self.result = ''.join(['1' if bit == '0' else '0' for bit in self.result])
+
+        if len(self.result) > 16:
+            self.result = self.result[-16:]
+
+        self.result = self.result
 
         self.zero = all(bit == '0' for bit in self.result)
 
@@ -36,6 +41,3 @@ class ALU:
     
     def read(self):
         return [self.result, self.zr, self.ng]
-
-
-    
