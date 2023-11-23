@@ -1,3 +1,4 @@
+#Este metodo nos ayuda a comprobar si la condicion de salto se cumple. Usando las flags que nos da la ALU
 def jumpCondition(jump_bits, zr, ng):
     jumpConditions = {
         "000": "null",

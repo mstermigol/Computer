@@ -4,7 +4,8 @@ class MUX:
             raise ValueError("Number of bits must be greater than 0")
         self.numBits = numBits
         self.data = "0" * numBits
-
+        
+# Se ingresan los valores a y b, finalmente sel va a decidir cual de los dos se escogera
     def select(self, a, b, sel):
         if len(a) == self.numBits and len(b) == self.numBits:
             if sel == 0:

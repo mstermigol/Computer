@@ -8,6 +8,7 @@ class RAM:
             for address, data in initial_values.items():
                 self.load(address, data, load=True)
 
+#Metodo para cargar en memoria. Especificamos la direccion; que vamos a guardar y finalmente el load para ver si lo cargamos o no
     def load(self, address, data, load):
         if load:
             int_address = int(address, 2)
@@ -19,6 +20,7 @@ class RAM:
             else:
                 raise IndexError("data address out of range")
 
+#Metodo para leer de una posicion de memoria
     def read(self, address):
         int_address = int(address, 2)
         if 0 <= int_address < self.size:

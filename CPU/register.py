@@ -5,6 +5,7 @@ class REGISTER:
         self.numBits = numBits
         self.data = "0" * numBits
 
+#Metodo para cargar un dato. Donde le ingresamos el valor y si lo guardamos o no
     def load(self, new_data, c):
         if c == 1:
             if len(new_data) == self.numBits:

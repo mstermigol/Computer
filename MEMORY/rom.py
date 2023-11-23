@@ -6,6 +6,7 @@ class ROM:
             raise ValueError("Program size exceeds ROM capacity")
         self.memory = program + ["0" * 16] * (self.size - len(program))
 
+#Metodo para leer de una posicion de memoria en la rom
     def read(self, address):
         if len(address) == 16:
             address_int = int(address, 2)

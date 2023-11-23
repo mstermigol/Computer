@@ -5,6 +5,7 @@ class ALU:
         self.zr = 0
         self.ng = 0
 
+# Se ingresa X y Y que son numeros y C que son 6 bits que corresponde a ZX, NX, ZY, NY, F y NO respectivamente
     def operate(self, x, y, c):
         if len(c) != 6:
             raise ValueError("Control bits (c) must be a 6-bit binary string.")
@@ -39,5 +40,6 @@ class ALU:
         self.zr = 1 if self.zero else 0
         self.ng = 1 if self.result[0] == '1' else 0
     
+    #Se devuelve el resultado y las flags de si es ceros o negativo
     def read(self):
         return [self.result, self.zr, self.ng]
